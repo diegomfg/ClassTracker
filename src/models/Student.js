@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { UserController } = require('../controllers/UserController');
+const { UserController } = require('../controllers/StudentController');
 
 const StudentSchema = new mongoose.Schema({
   first_name: {
@@ -50,8 +50,6 @@ StudentSchema.pre("save", function(next){
             next();
         });
     });
-
-
 })
 
 module.exports =  mongoose.model("Student", StudentSchema);

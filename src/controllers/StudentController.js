@@ -1,6 +1,6 @@
 const Student = require('../models/Student');
 
-class UserController{
+class StudentController{
   constructor(){
   }
 
@@ -19,4 +19,4 @@ class UserController{
   }
 }
 
-exports.UserController = new UserController;
+exports.StudentController = new StudentController;
