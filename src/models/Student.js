@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const constants = require('../../util/constants');
+
 
 const StudentSchema = new mongoose.Schema({
 
@@ -34,8 +36,8 @@ const StudentSchema = new mongoose.Schema({
 
   role: {
     type: String,
-    enum: ['STUDENT', 'ADMIN'],
-    default: 'STUDENT'
+    enum: constants.USER_ROLES,
+    default: constnats.USER_ROLES[0]
   }
 
 });
