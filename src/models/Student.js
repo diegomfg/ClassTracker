@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { UserController } = require('../controllers/UserController');
 
 const StudentSchema = new mongoose.Schema({
+
   first_name: {
     type: String,
     default: null,
@@ -12,9 +12,10 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  // email: {
-  //   type: String,
-  // },
+  email: {
+    type: String,
+    unique: true,
+  },
   password: {
     type: String,
     required: true
@@ -22,13 +23,22 @@ const StudentSchema = new mongoose.Schema({
   biography: {
     type: String,
     // required: false,
-    minlength: 5,
+    // minlength: 5,
+    default: ""
   },
   major: {
     type: String,
-    required: true
+    required: false,
+    default: ""
+  },
+
+  role: {
+    type: String,
+    enum: ['STUDENT', 'ADMIN'],
+    default: 'STUDENT'
   }
-})
+
+});
 
 StudentSchema.pre("save", function(next){
 
@@ -51,8 +61,8 @@ StudentSchema.pre("save", function(next){
         });
     });
 
-
 })
 
-module.exports =  mongoose.model("Student", StudentSchema);
+const Student = mongoose.model("Student", StudentSchema);
 
+module.exports = { Student }

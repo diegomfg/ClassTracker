@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const app = express();
 const path = require('path');
 const hbs = require('hbs');
-const Connection = require('./src/database/connection');
+            require('./src/database/connection').Connect();
 const UserRoutes = require('./src/routes/UserRoutes');
 const IndexRoutes = require('./src/routes/IndexRoutes');
 
@@ -13,7 +13,7 @@ hbs.registerPartials(__dirname + '/views/partials', ()=>{
   console.log("Registered Handlebars partials");
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.use('/', IndexRoutes);
 app.use('/user', UserRoutes);
